@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   body{
     background-color: ${({ theme }) => theme.palette.grey.light};
     color: white;
+    font-family: 'Roboto', sans-serif;
     height: 100vh;
   }
   .container{
