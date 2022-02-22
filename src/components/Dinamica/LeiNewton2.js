@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FormulaBox from '../Globals/FormulaBox';
 import Input from '../Globals/Input';
@@ -7,6 +7,12 @@ const LeiNewton2Styled = styled.div`
     background-color: ${({ theme }) => theme.palette.grey.main};
     border-radius: 5px;
     padding: 5px 10px;
+    .force{
+        transition: 0.2s ease all;
+    }
+    .force:focus{
+        left: 50px
+    }
 `
 
 export default function LeiNewton2(){
@@ -15,7 +21,7 @@ export default function LeiNewton2(){
     const [mass, setMass] = useState('');
     const [acceleration, setAcceleration] = useState('');
 
-    React.useEffect(
+    useEffect(
         () => {
             if(mass != '' && acceleration != ''){
                 setForce(mass * acceleration);
@@ -37,29 +43,20 @@ export default function LeiNewton2(){
                 />
                 =
                 <Input 
+                    className='mass'
                     name='Massa' 
                     unity='m' 
                     set={setMass}
                     var={mass}
                 />
                 *
-                <Input 
+                <Input
+                    className='acceleration'
                     name='Acel.' 
                     unity='a' 
                     set={setAcceleration}
                     var={acceleration}
                 />
-                {/* <input className='force' placeholder='F' onChange={(event) => {
-                    setForce(event.target.value);
-                }} /> 
-                = 
-                <input className='mass' placeholder='m' onChange={(event) => {
-                    setMass(event.target.value);
-                }}/> 
-                *
-                <input className='acceleration' placeholder='a' onChange={(event) => {
-                    setAcceleration(event.target.value);
-                }}/> */}
             </FormulaBox>
         </LeiNewton2Styled>
     )
